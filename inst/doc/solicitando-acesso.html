@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Solicitando acesso aos Web Services do SEI</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Solicitando acesso aos Web Services do
+SEI</h1>
+
+
+
+<p>Antes de conseguir qualquer resposta do <code>rsei</code>, é preciso
+que o <strong>órgão gestor da sua instalação do SEI</strong> (em geral a
+área de TI, autarquia de tecnologia ou empresa de informática do
+governo) habilite o consumo dos Web Services para o seu sistema. Esta
+vignette descreve <strong>o que pedir</strong> e <strong>quais dados
+enviar</strong>, com base no fluxo típico de solicitação. Os valores
+aqui são <strong>fictícios e genéricos</strong> — substitua-os pelos do
+seu ambiente.</p>
+<blockquote>
+<p><strong>Por que isso é necessário.</strong> Os Web Services do SEI
+são fechados por padrão. O acesso é liberado por <em>sistema</em> (uma
+sigla cadastrada) e restrito aos endereços de rede previamente
+autorizados. Sem esse cadastro e a liberação de IP, todas as chamadas
+falham — independentemente do <code>rsei</code>.</p>
+</blockquote>
+<div id="visão-geral-do-fluxo" class="section level2">
+<h2>Visão geral do fluxo</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Abrir o pedido</strong> com a área gestora do SEI
+(normalmente via chamado).</li>
+<li><strong>Enviar os dados de cadastro</strong> do sistema (lista
+abaixo).</li>
+<li>A área <strong>cadastra o sistema</strong> e solicita a
+<strong>liberação dos IPs</strong> no firewall (costuma ser um chamado
+separado, em outra equipe).</li>
+<li><strong>Testar no ambiente de treinamento/homologação</strong>
+primeiro.</li>
+<li>Após validar, <strong>solicitar a réplica da configuração em
+produção</strong>.</li>
+</ol>
+<p>Cada instalação do SEI é independente: a sigla, a chave, os endpoints
+e os métodos liberados valem <strong>apenas</strong> para aquele
+ambiente.</p>
+</div>
+<div id="dados-a-enviar-no-pedido" class="section level2">
+<h2>Dados a enviar no pedido</h2>
+<p>A área gestora normalmente pede os seguintes itens. Um modelo de
+mensagem:</p>
+<pre><code>Prezados, solicitamos a habilitacao do consumo dos Web Services do SEI
+para o nosso sistema, nos ambientes de treinamento e producao:
+
+1) Cadastro do Sistema (sigla do &quot;servico&quot;)
+   Sigla sugerida: MEU_SISTEMA
+
+2) IP(s) do servidor de integracao (IP de saida do orgao)
+   - &lt;IP publico do servidor que fara as chamadas&gt;
+   - &lt;IP adicional, se houver&gt;
+   (sao os enderecos que precisam ser liberados no firewall)
+
+3) Unidades que serao cadastradas
+   - Todas  (ou liste as unidades especificas)
+
+4) Tipos de operacao (metodos a liberar) — ver lista abaixo
+
+5) Tipos de processo
+   - Todos  (ou liste os tipos especificos)
+
+6) Tipos de documento
+   - Todos  (ou deixar em branco)
+
+Faremos os testes primeiro em treinamento e, apos validacao,
+solicitaremos a migracao para producao.</code></pre>
+<div id="sigla-do-sistema-siglasistema" class="section level3">
+<h3>1. Sigla do sistema (<code>SiglaSistema</code>)</h3>
+<p>Um identificador curto do seu sistema, definido por você e cadastrado
+pela área gestora (ex.: <code>MEU_SISTEMA</code>). É o primeiro
+parâmetro de toda chamada.</p>
+</div>
+<div id="ips-de-saída-liberação-de-firewall" class="section level3">
+<h3>2. IPs de saída (liberação de firewall)</h3>
+<blockquote>
+<p><strong>Atenção (privacidade/LGPD).</strong> Informe
+<strong>endereços de rede do servidor</strong>, não dados pessoais.
+Evite enviar nomes de usuários, logins de VPN ou qualquer identificador
+de pessoa física no pedido — eles não são necessários para a liberação e
+ampliam desnecessariamente o tratamento de dados pessoais. A liberação é
+por <strong>IP de saída</strong> do host que fará as chamadas.</p>
+</blockquote>
+<p>Se o seu ambiente sai por um IP dinâmico ou por VPN, alinhe com a
+equipe de rede uma faixa fixa ou um IP dedicado.</p>
+</div>
+<div id="tipos-de-operação-métodos" class="section level3">
+<h3>3. Tipos de operação (métodos)</h3>
+<p>Liste os métodos que pretende usar. Peça apenas o necessário
+(princípio da minimização). Exemplos comuns:</p>
+<pre><code>consultarProcedimento
+consultarProcedimentoIndividual
+consultarDocumento
+listarAndamentos
+listarUsuarios
+listarUnidades
+gerarProcedimento      # operacoes de escrita — peca so se for usar
+incluirDocumento
+lancarAndamento
+enviarProcesso
+definirMarcador</code></pre>
+<p>Nem todo método existe em toda instalação: dependendo da configuração
+do servidor, alguns (p. ex. certas listagens) podem <strong>não estar
+disponíveis</strong>. Confirme com a área gestora quais foram
+efetivamente habilitados.</p>
+</div>
+</div>
+<div id="a-identificacaoservico-chave-de-acesso" class="section level2">
+<h2>A <code>IdentificacaoServico</code> (chave de acesso)</h2>
+<p>Além da sigla, cada chamada exige uma
+<code>IdentificacaoServico</code> — a <strong>chave de acesso</strong>
+do serviço, gerada/definida no cadastro do sistema pela área gestora.
+Trate-a como segredo:</p>
+<ul>
+<li><strong>não</strong> a escreva diretamente no código nem a versione
+no Git;</li>
+<li>prefira variável de ambiente
+(<code>RSEI_IDENTIFICACAO_SERVICO</code>) ou o keyring
+(<code>store_sei_credentials()</code>).</li>
+</ul>
+<blockquote>
+<p>O manual do SEI menciona um modo legado baseado em “Endereço” que
+será descontinuado. Prefira já solicitar a <strong>Chave de
+Acesso</strong> para evitar retrabalho.</p>
+</blockquote>
+</div>
+<div id="endpoints-treinamento-e-produção" class="section level2">
+<h2>Endpoints (treinamento e produção)</h2>
+<p>Peça à área gestora a URL do Web Service de cada ambiente. O formato
+costuma ser:</p>
+<pre><code>https://&lt;host-do-seu-sei&gt;/sei/ws/SeiWS.php        # SEI principal
+https://&lt;host-do-seu-sei&gt;/sip/ws/...              # SIP (permissoes)</code></pre>
+<p>Use <strong>treinamento/homologação</strong> para validar tudo —
+sobretudo as operações de escrita — antes de tocar em produção.</p>
+</div>
+<div id="configurando-o-rsei-com-o-que-foi-liberado" class="section level2">
+<h2>Configurando o <code>rsei</code> com o que foi liberado</h2>
+<p>Com a sigla, a chave e a URL em mãos:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(rsei)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># Guarde a sigla e a chave fora do código (keyring); faça isso uma vez por máquina.</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">store_sei_credentials</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">service_name =</span> <span class="st">&quot;SEI_WS&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">username     =</span> <span class="st">&quot;MEU_SISTEMA&quot;</span>,        <span class="co"># sigla do sistema (SiglaSistema)</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">password     =</span> <span class="st">&quot;SUA_CHAVE_DE_ACESSO&quot;</span> <span class="co"># chave de acesso (IdentificacaoServico)</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co"># Recupere as credenciais guardadas quando precisar montar a configuração.</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>creds <span class="ot">&lt;-</span> <span class="fu">get_sei_credentials</span>(<span class="st">&quot;SEI_WS&quot;</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>cfg <span class="ot">&lt;-</span> <span class="fu">sei_config</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>  <span class="at">sei_url               =</span> <span class="st">&quot;https://sei.exemplo.gov.br/sei/ws/SeiWS.php&quot;</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>  <span class="at">sigla_sistema         =</span> creds<span class="sc">$</span>username,</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>  <span class="at">identificacao_servico =</span> creds<span class="sc">$</span>password</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>)</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co"># Teste rápido: uma listagem leve confirma sigla + chave + liberação de IP.</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="fu">listar_unidades</span>(cfg)</span></code></pre></div>
+<p>Se a chamada retornar dados, o trio <strong>sigla + chave + IP
+liberado</strong> está correto. Erros comuns:</p>
+<ul>
+<li><em>SOAP Fault</em> de autenticação → sigla ou chave
+incorretas;</li>
+<li><em>timeout</em> / conexão recusada → IP ainda não liberado no
+firewall, ou você está chamando de um host diferente do autorizado;</li>
+<li>método “não encontrado” → operação não habilitada naquela
+instalação.</li>
+</ul>
+</div>
+<div id="boas-práticas-de-privacidade-e-segurança-lgpd" class="section level2">
+<h2>Boas práticas de privacidade e segurança (LGPD)</h2>
+<p>Os processos e documentos do SEI frequentemente contêm <strong>dados
+pessoais</strong> e até <strong>dados sensíveis</strong>. Ao automatizar
+consultas com o <code>rsei</code>:</p>
+<ul>
+<li><strong>Minimize</strong>: solicite e consulte apenas os métodos e
+processos necessários à sua finalidade.</li>
+<li><strong>Não exponha segredos</strong>: chaves de acesso e
+credenciais nunca devem ir para o código-fonte, logs ou repositórios.
+Use keyring ou variáveis de ambiente.</li>
+<li><strong>Cuidado ao salvar respostas</strong>: os <code>tibble</code>
+retornados podem conter nomes, e-mails e teores de documentos. Trate-os
+como dados pessoais — controle acesso, evite cópias desnecessárias e não
+os publique.</li>
+<li><strong>Anonimização em exemplos</strong>: ao compartilhar código,
+relatórios ou abrir <em>issues</em>, use protocolos e identificadores
+<strong>fictícios</strong> (como nesta vignette), nunca dados
+reais.</li>
+<li><strong>Respeite o nível de acesso</strong>: o campo
+<code>NivelAcessoGlobal</code>
+(<code>público</code>/<code>restrito</code>/<code>sigiloso</code>)
+indica a classificação do processo no SEI. Não use o Web Service para
+contornar restrições de acesso.</li>
+</ul>
+<p>Documente a <strong>base legal</strong> e a finalidade do tratamento
+junto à área de privacidade/encarregado (DPO) do seu órgão antes de
+colocar a integração em produção.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
