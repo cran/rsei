@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Toolkit to interact with the 'SOAP' web services of the 'SEI' (Sistema Eletronico de Informacoes), the electronic system for document and process management widely used by Brazilian public administration bodies. Provides functions to build the 'SOAP' envelopes, perform the requests, handle 'SOAP' faults, and parse the 'XML' responses into data frames. Covers process and document queries, listing services, write operations (creating processes and documents, sending and signing off processes, blocks, deadlines and markers) and the permission services of the companion 'SIP' system. Note that access to the web services is restricted by the server to previously authorized network addresses. For more information about the 'SEI' system and its web services see \url{https://www.gov.br/gestao/pt-br/assuntos/processo-eletronico-nacional}.
+Toolkit to interact with the 'SOAP' web services of the 'SEI' (Sistema Eletronico de Informacoes), the electronic system for document and process management widely used by Brazilian public administration bodies. Provides functions to build the 'SOAP' envelopes, perform the requests, handle 'SOAP' faults, and parse the 'XML' responses into data frames. Covers process and document queries, listing services, write operations (creating processes and documents, sending and signing off processes, blocks, deadlines and markers) and the permission services of the companion 'SIP' system. Note that access to the web services is restricted by the server to previously authorized network addresses. For more information about the 'SEI' system and its web services see \url{https://github.com/pengovbr}.
 }
 \section{Acesso restrito por IP}{
 
@@ -31,16 +31,16 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Andre Leite \email{leite@castlab.org}
+\strong{Maintainer}: André Leite \email{leite@castlab.org} (\href{https://orcid.org/0000-0002-4718-9766}{ORCID})
 
 Authors:
 \itemize{
-  \item Andre Leite \email{leite@castlab.org}
-  \item Marcos Wasilew \email{marcos.wasilew@gmail.com}
-  \item Hugo Vasconcelos \email{hugo.vasconcelos@ufpe.br}
-  \item Carlos Amorin \email{carlos.agaf@ufpe.br}
-  \item Diogo Bezerra \email{diogo.bezerra@ufpe.br}
-  \item Júlia Nascimento Barreto \email{juliabarreto@gd.seplag.pe.gov.br}
+  \item André Leite \email{leite@castlab.org} (\href{https://orcid.org/0000-0002-4718-9766}{ORCID})
+  \item Marcos Wasiliew \email{marcos.wasiliew@gmail.com} (\href{https://orcid.org/0009-0004-4694-3159}{ORCID})
+  \item Hugo Vasconcelos \email{hugo.vasconcelos@ufpe.br} (\href{https://orcid.org/0000-0001-6249-0920}{ORCID})
+  \item Carlos Amorim \email{carlos.agaf@ufpe.br} (\href{https://orcid.org/0000-0001-6315-8305}{ORCID})
+  \item Diogo Bezerra \email{diogo.bezerra@ufpe.br} (\href{https://orcid.org/0000-0002-1216-8674}{ORCID})
+  \item Júlia Nascimento Barreto \email{juliabarreto@gd.seplag.pe.gov.br} (\href{https://orcid.org/0009-0004-2851-7770}{ORCID})
 }
 
 }
